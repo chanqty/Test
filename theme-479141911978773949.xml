@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' b:responsive='true' expr:dir='data:blog.languageDirection' lang='en-US' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+ <head>
+ <meta content='width=device-width, initial-scale=1' name='viewport'/>
+  <b:include data='blog' name='all-head-content'/>
+  <title><data:blog.pageTitle/></title>
+  <b:skin><![CDATA[
+
+     body{background:#fff}
+
+   ]]></b:skin>
+   </head>
+   <body>
+   <b:section class='main' id='main' showaddelement='yes'>
+     <b:widget id='HTML2' locked='false' title='' type='HTML'>
+       <b:widget-settings>
+         <b:widget-setting name='content'>&lt;!doctype html&gt;
+
+
+  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;styles.css&quot; /&gt;
+  &lt;style&gt;
+    /* Add the CSS styles here */
+    @import url(&#39;https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap&#39;);
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: &#39;Roboto&#39;, sans-serif;
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .popup-content {
+      max-width: 600px;
+      padding: 30px;
+      background-color: #fff;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: #333;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    h2 {
+      color: #333;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #555;
+      font-size: 16px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .announcement-text {
+      color: #555;
+      font-size: 16px;
+      line-height: 1.5;
+      text-align: left;
+    }
+
+    label {
+      color: #333;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      background-color: #999;
+      cursor: not-allowed;
+    }
+
+    @media screen and (max-width: 600px) {
+      .popup-content {
+        padding: 20px;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+
+      p,
+      .announcement-text {
+        font-size: 14px;
+      }
+
+      button {
+        padding: 8px 16px;
+        font-size: 14px;
+      }
+    }
+  &lt;/style&gt;
+
+
+  &lt;div class=&quot;popup&quot; id=&quot;popup&quot;&gt;
+    &lt;div class=&quot;popup-content&quot;&gt;
+      &lt;span class=&quot;close&quot; onclick=&quot;closePopup()&quot;&gt;&amp;times;&lt;/span&gt;
+      &lt;h2&gt;Attention users!&lt;/h2&gt;
+      &lt;p class=&quot;announcement-text&quot;&gt;
+        Exciting news: the beta version of our web application is now live! I have worked tirelessly to optimize and improve the platform, and I&#39;m thrilled to invite you to join me on this journey.&lt;br /&gt;&lt;br /&gt;
+        During this beta release, I have focused on enhancing the user experience and addressing any technical issues. Your feedback and bug reports are invaluable in helping me fine-tune the application to meet your needs.&lt;br /&gt;&lt;br /&gt;
+        Rest assured, your data security andprivacy are my top priorities. I have implemented advanced security measures to ensure your protection.&lt;br /&gt;&lt;br /&gt;
+        To access the beta version, visit our website and follow the instructions. If you encounter any difficulties, I am here personally to assist you.&lt;br /&gt;&lt;br /&gt;
+        Thank you for your patience and support. Let&#39;s work together to create an exceptional web application!&lt;br /&gt;&lt;br /&gt;
+        Sincerely,&lt;br /&gt;
+        Christian Saruna
+      &lt;/p&gt;
+      &lt;label for=&quot;agree-checkbox&quot;&gt;I agree&lt;/label&gt;
+      &lt;input type=&quot;checkbox&quot; id=&quot;agree-checkbox&quot; onchange=&quot;toggleButton()&quot; /&gt;
+      &lt;button id=&quot;close-button&quot; disabled onclick=&quot;closePopup()&quot;&gt;Close&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;script&gt;
+    // JavaScript functions here
+    function showPopup() {
+      document.getElementById(&quot;popup&quot;).style.display = &quot;flex&quot;;
+    }
+
+    function closePopup() {
+      document.getElementById(&quot;popup&quot;).style.display = &quot;none&quot;;
+    }
+
+    function toggleButton() {
+      const checkbox = document.getElementById(&quot;agree-checkbox&quot;);
+      const button = document.getElementById(&quot;close-button&quot;);
+
+      button.disabled = !checkbox.checked;
+    }
+
+    // Check if the announcement has already been shown
+    const isAnnouncementShown = localStorage.getItem(&quot;announcementShown&quot;);
+
+    if (!isAnnouncementShown) {
+      showPopup();
+      localStorage.setItem(&quot;announcementShown&quot;, &quot;true&quot;);
+    }
+
+    // Show the announcement every 30 minutes if the user refreshes the page
+    setInterval(function () {
+      showPopup();
+    }, 30 * 60 * 1000);
+  &lt;/script&gt;
+
+&lt;/!doctype&gt;</b:widget-setting>
+       </b:widget-settings>
+       <b:includable id='main'>
+  <!-- only display title if it's non-empty -->
+  <b:if cond='data:title != &quot;&quot;'>
+    <h2 class='title'><data:title/></h2>
+  </b:if>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+
+  <b:include name='quickedit'/>
+</b:includable>
+     </b:widget>
+     <b:widget id='HTML1' locked='false' title='' type='HTML'>
+       <b:widget-settings>
+         <b:widget-setting name='content'>&lt;!doctype html&gt;
+
+
+  
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css&quot; /&gt;
+  &lt;style&gt;
+    @import url(&#39;https://fonts.googleapis.com/css2?family=Roboto:wght@300&amp;display=swap&#39;);
+
+    body {
+      text-align: center;
+      font-family: &#39;Arial&#39;, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+
+    .dark-mode {
+      background-color: #222;
+      color: #fff;
+    }
+
+    h1 {
+      color: #880088;
+      margin-top: 30px;
+      font-size: 48px;
+      font-family: &#39;Pacifico&#39;, cursive;
+    }
+
+    .generator {
+      margin-top: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .input-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    input[type=&quot;text&quot;] {
+      padding: 10px;
+      font-size: 20px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      width: 300px;
+      margin-right: 10px;
+    }
+
+    button {
+      padding: 10px;
+      font-size: 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .result-container {
+      margin-top: 30px;
+      text-align: left;
+      position: relative;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+    }
+
+    #outputText {
+      font-size: 24px;
+      font-weight: bold;
+      color: #555;
+      padding: 10px;
+      border-radius: 5px;
+      border: 2px solid #007bff;
+      background-color: #ffffff;
+      position: relative;
+      z-index: 1;
+      max-width: 100%;
+    }
+
+    #outputText::after {
+      content: &#39;&#39;;
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      width: calc(100% + 10px);
+      height: calc(100% + 10px);
+      border-radius: 10px;
+      border: 2px solid #007bff;
+      opacity: 0.7;
+      z-index: -1;
+      pointer-events: none;
+      animation: neon-effect 1s infinite alternate;
+    }
+
+    @keyframes neon-effect {
+      0% {
+        box-shadow: 0 0 5px #007bff, 0 0 20px #007bff, 0 0 30px #007bff, 0 0 40px #007bff, 0 0 50px #007bff, 0 0 60px #007bff, 0 0 70px #007bff;
+      }
+      100% {
+        box-shadow: 0 0 5px #007bff, 0 0 20px #007bff, 0 0 30px #007bff, 0 0 40px #007bff, 0 0px #007bff, 0 0 70px #007bff, 0 0 80px #007bff;
+      }
+    }
+
+    .copy-button {
+      padding: 8px 15px;
+      font-size: 16px;
+      background-color: #ddd;
+      color: #333;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+      width: 100%;
+      max-width: 200px;
+    }
+
+    .delete-button {
+      padding: 8px 15px;
+      font-size: 16px;
+      background-color: #dc3545;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+      width: 100%;
+      max-width: 200px;
+    }
+
+    .bookmark-button {
+      padding: 8px 15px;
+      font-size: 16px;
+      background-color: #ddd;
+      color: #333;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+      margin-right: 5px;
+      width: 100%;
+      max-width: 200px;
+    }
+
+    .time-date {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 14px;
+      color: #880088;
+    }
+
+    .typing-animation {
+      animation: typing 1s steps(10, end) infinite;
+    }
+
+    @keyframes typing {
+      0% {
+        width: 0;
+      }
+      100% {
+        width: 100%;
+      }
+    }
+
+    .footer {
+      margin-top: 50px;
+      color: #555;
+      font-family: &#39;Roboto&#39;, sans-serif;
+      font-size: 14px;
+    }
+
+    .footer span {
+      display: inline-block;
+      position: relative;
+    }
+
+    .footer span::after {
+      content: &#39;&#39;;
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background-color: #880088;
+      bottom: -5px;
+      left: 0;
+      opacity: 0.7;
+    }
+
+    .ig-icon {
+      font-size: 24px;
+      vertical-align: middle;
+      margin-left: 5px;
+      color: #880088;
+    }
+
+    .toggle-button {
+      padding: 8px 15px;
+      font-size: 16px;
+      background-color: #ddd;
+      color: #333;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .toggle-button.dark-mode {
+      background-color: #555;
+      color: #fff;
+    }
+
+    .generate-button {
+      padding: 8px 15px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 480px) {
+      .input-container {
+        flex-direction: column;
+      }
+
+      input[type=&quot;text&quot;] {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+      }
+
+      .copy-button,
+      .delete-button,
+      .bookmark-button,
+      .generate-button {
+        max-width: 100%;
+        width: 100%;
+      }
+    }
+ &lt;/style&gt;
+
+
+  &lt;h1&gt;Beshyble Emoji Text Generator&lt;/h1&gt;
+  &lt;div class=&quot;time-date&quot;&gt;
+    &lt;script&gt;
+      function updateTimeDate() {
+        var today = new Date();
+        var date = today.toLocaleDateString();
+        var time = today.toLocaleTimeString();
+        document.getElementById(&#39;timeDate&#39;).innerHTML = date + &#39; &#39; + time;
+      }
+      setInterval(updateTimeDate, 1000);
+    &lt;/script&gt;
+    &lt;span id=&quot;timeDate&quot;&gt;&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;generator&quot;&gt;
+    &lt;div class=&quot;input-container&quot;&gt;
+      &lt;input type=&quot;text&quot; id=&quot;inputText&quot; placeholder=&quot;Enter text&quot; /&gt;
+      &lt;button onclick=&quot;generateEmojiText()&quot; class=&quot;generate-button&quot;&gt;Generate&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;result-container&quot;&gt;
+      &lt;input type=&quot;text&quot; id=&quot;outputText&quot; readonly /&gt;
+      &lt;button class=&quot;copy-button&quot; onclick=&quot;copyToClipboard()&quot;&gt;&lt;i class=&quot;far fa-copy&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;button class=&quot;delete-button&quot; onclick=&quot;deleteAll()&quot;&gt;&lt;i class=&quot;far fa-trash-alt&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;button class=&quot;bookmark-button&quot; onclick=&quot;bookmarkPage()&quot;&gt;&lt;i class=&quot;far fa-bookmark&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;footer&quot;&gt;
+    &lt;span&gt;&#169; Created by Christian Saruna&lt;/span&gt;
+    &lt;a href=&quot;https://www.instagram.com/Ch4nqty&quot; target=&quot;_blank&quot;&gt;
+      &lt;i class=&quot;fab fa-instagram ig-icon&quot;&gt;&lt;/i&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+
+  &lt;script&gt;
+    function generateEmojiText() {
+      var inputText = document.getElementById(&#39;inputText&#39;).value;
+      var outputText = document.getElementById(&#39;outputText&#39;);
+      var emoji = &#39; 🤸&#39;;
+      var modifiedText = inputText.replace(/\s/g, emoji);
+
+      if (inputText.trim() === &#39;&#39;) {
+        outputText.value = &#39;Please enter some text.&#39;;
+      } else {
+        outputText.value = modifiedText + emoji;
+      }
+    }
+
+    function copyToClipboard() {
+      var outputText = document.getElementById(&#39;outputText&#39;);
+      outputText.select();
+      outputText.setSelectionRange(0, 99999);
+      document.execCommand(&#39;copy&#39;);
+
+      var copyButton = document.getElementsByClassName(&#39;copy-button&#39;)[0];
+      copyButton.innerHTML = &#39;Copied!&#39;;
+      setTimeout(function() {
+        copyButton.innerHTML = &#39;&lt;i class=&quot;far fa-copy&quot;&gt;&lt;/i&gt;&#39;;
+      }, 2000);
+    }
+
+    function deleteAll() {
+      var inputText = document.getElementById(&#39;inputText&#39;);
+      var outputText = document.getElementById(&#39;outputText&#39;);
+      inputText.value = &#39;&#39;;
+      outputText.value = &#39;&#39;;
+    }
+
+    function bookmarkPage() {
+      var pageTitle = document.title;
+      var pageUrl = window.location.href;
+      if (window.sidebar &amp;&amp; window.sidebar.addPanel) { // Mozilla Firefox
+        window.sidebar.addPanel(pageTitle, pageUrl, &#39;&#39;);
+      } else if (window.external &amp;&amp; window.external.AddFavorite) { // IE Favorite
+        window.external.AddFavorite(pageUrl, pageTitle);
+      } else if (window.opera &amp;&amp; window.print) { // Opera Hotlist
+        this.title = pageTitle;
+        return true;
+      } else { // Other browsers (mainly WebKit)
+        var bookmarkMessage = document.createElement(&#39;span&#39;);
+        bookmarkMessage.innerText = &#39;Press CTRL+D to bookmark this page.&#39;;
+        bookmarkMessage.classList.add(&#39;typing-animation&#39;);
+        document.body.appendChild(bookmarkMessage);
+        setTimeout(function() {
+          bookmarkMessage.remove();
+        }, 3000);
+      }
+    }
+
+    function toggleDarkMode() {
+      var body = document.body;
+     body.classList.toggle(&#39;dark-mode&#39;);
+    }
+  &lt;/script&gt;
+  &lt;button class=&quot;toggle-button&quot; onclick=&quot;toggleDarkMode()&quot;&gt;&lt;i class=&quot;fas fa-adjust&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+
+&lt;/!doctype&gt;</b:widget-setting>
+       </b:widget-settings>
+       <b:includable id='main'>
+  <!-- only display title if it's non-empty -->
+  <b:if cond='data:title != &quot;&quot;'>
+    <h2 class='title'><data:title/></h2>
+  </b:if>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+
+  <b:include name='quickedit'/>
+</b:includable>
+     </b:widget>
+   </b:section>
+   </body>
+</html>
